@@ -5,7 +5,7 @@ public class Chess{
 		Scanner scn = new Scanner(System.in);
 		//User menu selection for the next movement, the user will choose the piece, and the both coodinates 
 		//piece selection
-		System.out.println("Choose the piece you want to move. Options: King, Rook, Pawn, Knight, Queen, Bishop")
+		System.out.println("Choose the piece you want to move. Options: King, Rook, Pawn, Knight, Queen, Bishop");
 		String ChoosePiece=scn.nextLine();
 		//x selection
 		System.out.println("Choose the x coordinate(A-H)");
