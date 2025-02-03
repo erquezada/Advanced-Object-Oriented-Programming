@@ -109,7 +109,7 @@ public class ChessGame {
     public static void main(String[] args) {
         try {
             // Step 1: Read chess pieces from the file
-            String filePath = "chess.txt"; // Replace with your file path
+            String filePath = "chess.txt"; 
             ArrayList<ChessPiece> chessPieces = readChessPieces(filePath);
 
             // Step 2: Prompt the user for the target position
