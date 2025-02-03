@@ -120,9 +120,9 @@ public class ChessGame {
 
             // Step 2: Prompt the user for the target position
             Scanner scanner = new Scanner(System.in);
-            System.out.print("Enter the target X position (a-h): ");
+            System.out.print("Enter the position you want to move to (a-h): ");
             char targetX = scanner.next().toLowerCase().charAt(0);
-            System.out.print("Enter the target Y position (1-8): ");
+            System.out.print("Enter the position you want to move to (1-8): ");
             int targetY = scanner.nextInt();
 
             // Step 3: Validate the move for each piece
