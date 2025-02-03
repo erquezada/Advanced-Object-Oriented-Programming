@@ -1,3 +1,9 @@
+/*
+*  Course: CS 3331: Advanced Object-Oriented Programming
+ * Students: Eric Quezada, Conrado Carillo, Alejandro Acevedo
+ *  Lab 1: Validating a move for a chess piece
+ */
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
