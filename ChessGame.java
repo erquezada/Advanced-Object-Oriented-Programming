@@ -140,3 +140,85 @@ public class ChessGame {
         }
     }
 }
+
+
+///////////////////////////////////////CHESS PIECE CLASSES//////////////////////////////////////
+
+public class Pawn {
+	private int horizontalDistanceX;
+	private int verticalDistanceY;
+	
+	public Pawn(int horizontalDistanceX,int verticalDistanceY){
+		this.horizontalDistanceX=horizontalDistanceX;
+		this.verticalDistanceY=verticalDistanceY;
+	}
+	public boolean canMove(){
+		return horizontalDistanceX == 0 && verticalDistanceY == 1;
+	}
+}
+
+public class Rook {
+	private int horizontalDistanceX;
+	private int verticalDistanceY;
+	
+	public Rook(int horizontalDistanceX,int verticalDistanceY){
+		this.horizontalDistanceX=horizontalDistanceX;
+		this.verticalDistanceY=verticalDistanceY;
+	}
+	public boolean canMove(){
+		return horizontalDistanceX == 0 || verticalDistanceY == 0;
+	}
+}
+
+public class Knight {
+	private int horizontalDistanceX;
+	private int verticalDistanceY;
+	
+	public Knight(int horizontalDistanceX,int verticalDistanceY){
+		this.horizontalDistanceX=horizontalDistanceX;
+		this.verticalDistanceY=verticalDistanceY;
+	}
+	public boolean canMove(){
+		return (horizontalDistanceX == 2 && verticalDistanceY == 1) || (horizontalDistanceX == 1 && verticalDistanceY == 2);
+	}
+}
+
+public class Bishop {
+	private int horizontalDistanceX;
+	private int verticalDistanceY;
+	
+	public Bishop(int horizontalDistanceX,int verticalDistanceY){
+		this.horizontalDistanceX=horizontalDistanceX;
+		this.verticalDistanceY=verticalDistanceY;
+	}
+	public boolean canMove(){
+		return horizontalDistanceX == verticalDistanceY;
+	}
+}
+
+public class Queen {
+	private int horizontalDistanceX;
+	private int verticalDistanceY;
+	
+	public Queen(int horizontalDistanceX,int verticalDistanceY){
+		this.horizontalDistanceX=horizontalDistanceX;
+		this.verticalDistanceY=verticalDistanceY;
+	}
+	public boolean canMove(){
+		return horizontalDistanceX == 0 || verticalDistanceY == 0 || horizontalDistanceX == verticalDistanceY;
+	}
+}
+
+public class King {
+	private int horizontalDistanceX;
+	private int verticalDistanceY;
+	
+	public King(int horizontalDistanceX,int verticalDistanceY){
+		this.horizontalDistanceX=horizontalDistanceX;
+		this.verticalDistanceY=verticalDistanceY;
+	}
+	public boolean canMove(){
+		return horizontalDistanceX <= 1 && verticalDistanceY <= 1;
+	}
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
