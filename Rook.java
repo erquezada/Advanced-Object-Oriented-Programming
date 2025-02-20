@@ -1,11 +1,11 @@
 class Rook extends ChessPiece {
-    public Rook(ColorType color, char column, int row) {
-        super(PieceType.ROOK, color, column, row);
+    // Empty constructor
+    public Rook(String color, char column, int row) {
+        super("Rook", color, column, row);
     }
 
     @Override
-    public boolean verifyTarget(char targetCol, int targetRow) {
-        // The rook moves either horizontally (same row) or vertically (same column)
-        return column == targetCol || row == targetRow;
+    public boolean verifyMove(char newX, int newY) {
+        return (this.column == newX || this.row == newY);
     }
 }
