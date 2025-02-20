@@ -1,14 +1,12 @@
-class Queen extends ChessPiece {
-    public Queen(ColorType color, char column, int row) {
-        super(PieceType.QUEEN, color, column, row);
+class Queen extends Rook { 
+    // Empty constructor
+    public Queen(String color, char column, int row) {
+        super(color, column, row);
+        this.pieceName = "Queen"; // polymorphism
     }
 
     @Override
-    public boolean verifyTarget(char targetCol, int targetRow) {
-        int colDiff = Math.abs(targetCol - column);
-        int rowDiff = Math.abs(targetRow - row);
-
-        // The queen can move like a rook (same column or row) or like a bishop (diagonal movement)
-        return column == targetCol || row == targetRow || colDiff == rowDiff;
+    public boolean verifyMove(char newX, int newY) {
+        return super.verifyMove(newX, newY) || Math.abs(this.column - newX) == Math.abs(this.row - newY);
     }
 }
