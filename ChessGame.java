@@ -1,65 +1,66 @@
 import java.util.Scanner;
-import java.util.ArrayList;
-// Chess game class to read chess pieces from user input and validate moves
+
 public class ChessGame {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        ArrayList<ChessPiece> chessPieces = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
+        ChessPiece[] pieces = new ChessPiece[6];
 
-        while (true) {
-            try {
-                System.out.print("Select a chess piece (PAWN, ROOK, KNIGHT, BISHOP, QUEEN, KING): ");
-                PieceType pieceType = PieceType.valueOf(scanner.next().toUpperCase());
+        // Prompt user for each of the six pieces
+        for (int i = 0; i < 6; i++) {
+            System.out.println("Select a piece: Pawn, Rook, Knight, Bishop, Queen, King");
+            String pieceName = sc.nextLine().trim();
 
-                System.out.print("Enter color (WHITE, BLACK): ");
-                ColorType color = ColorType.valueOf(scanner.next().toUpperCase());
+            System.out.println("Enter color (WHITE or BLACK):");
+            String color = sc.nextLine().trim().toUpperCase();
 
-                System.out.print("Enter current column (a-h): ");
-                char col = scanner.next().charAt(0);
+            char column;
+            int row;
+            while (true) { // starting position loop
+                System.out.println("Enter starting position (Column A-H and Row 1-8):");
+                String input = sc.nextLine().trim().toUpperCase();
+                column = input.charAt(0);
+                row = Character.getNumericValue(input.charAt(1));
 
-                System.out.print("Enter current row (1-8): ");
-                int row = scanner.nextInt();
+                if (ChessBoard.withinChessboard(column, row)) break;
+                System.out.println("Invalid position! Enter column A-H and row 1-8.");
+            }
 
-                if (!Chessboard.withinChessboard(col, row)) {
-                    System.out.println("Invalid position. Try again.");
-                    continue;
-                }
-
-                ChessPiece piece = switch (pieceType) {
-                    case PAWN -> new Pawn(color, col, row);
-                    case ROOK -> new Rook(color, col, row);
-                    case KNIGHT -> new Knight(color, col, row);
-                    case BISHOP -> new Bishop(color, col, row);
-                    case QUEEN -> new Queen(color, col, row);
-                    case KING -> new King(color, col, row);
-                };
-
-                chessPieces.add(piece);
-
-                while (true) {
-                    System.out.print("Enter target column (a-h): ");
-                    char targetCol = scanner.next().charAt(0);
-
-                    System.out.print("Enter target row (1-8): ");
-                    int targetRow = scanner.nextInt();
-
-                    if (piece.isValidMove(targetCol, targetRow)) {
-                        System.out.println("Valid move!");
-                    } else {
-                        System.out.println("Invalid move!");
-                    }
-
-                    System.out.print("Check another move? (yes/no): ");
-                    if (!scanner.next().equalsIgnoreCase("yes")) break;
-                }
-
-                System.out.print("Select another piece? (yes/no): ");
-                if (!scanner.next().equalsIgnoreCase("yes")) break;
-            } catch (IllegalArgumentException e) {
-                System.out.println("Invalid input. Please try again.");
-                scanner.nextLine(); // Clear buffer
+            // Create the corresponding piece object
+            switch (pieceName.toLowerCase()) {
+                case "pawn": pieces[i] = new Pawn(color, column, row); break;
+                case "rook": pieces[i] = new Rook(color, column, row); break;
+                case "knight": pieces[i] = new Knight(color, column, row); break;
+                case "bishop": pieces[i] = new Bishop(color, column, row); break;
+                case "queen": pieces[i] = new Queen(color, column, row); break;
+                case "king": pieces[i] = new King(color, column, row); break;
+                default:
+                    System.out.println("Invalid piece! Restarting input.");
+                    i--;
             }
         }
-        scanner.close();
+
+        // Get target position
+        char targetColumn;
+        int targetRow;
+        while (true) { // target loop
+            System.out.println("Enter target position (Column A-H and Row 1-8):");
+            String input = sc.nextLine().trim().toUpperCase();
+            targetColumn = input.charAt(0);
+            targetRow = Character.getNumericValue(input.charAt(1));
+
+            if (ChessBoard.withinChessboard(targetColumn, targetRow)) break;
+            System.out.println("Invalid position! Enter column A-H and row 1-8.");
+        }
+
+        // Check if each piece can move to the target position
+        System.out.println("\nVerifying moves:\n");
+        for (ChessPiece piece : pieces) {
+            System.out.printf("%s at %c%d %s move to %c%d%n",
+                piece.getPieceName(), piece.getColumn(), piece.getRow(),
+                piece.verifyMove(targetColumn, targetRow) ? "can" : "can NOT",
+                targetColumn, targetRow);
+        }
+
+        sc.close();
     }
 }
