@@ -1,12 +1,13 @@
 class Knight extends ChessPiece {
-    public Knight(ColorType color, char column, int row) {
-        super(PieceType.KNIGHT, color, column, row);
+    // Empty constructor
+    public Knight(String color, char column, int row) {
+        super("Knight", color, column, row);
     }
 
     @Override
-    public boolean verifyTarget(char targetCol, int targetRow) {
-        int colDiff = Math.abs(targetCol - column);
-        int rowDiff = Math.abs(targetRow - row);
-        return (colDiff == 2 && rowDiff == 1) || (colDiff == 1 && rowDiff == 2); // L-shape movement
+    public boolean verifyMove(char newX, int newY) {
+        int dx = Math.abs(newX - this.column);
+        int dy = Math.abs(newY - this.row);
+        return (dx == 2 && dy == 1) || (dx == 1 && dy == 2);
     }
 }
