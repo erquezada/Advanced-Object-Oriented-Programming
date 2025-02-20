@@ -1,12 +1,11 @@
 class Bishop extends ChessPiece {
-    public Bishop(ColorType color, char column, int row) {
-        super(PieceType.BISHOP, color, column, row);
+    // Empty constructor
+    public Bishop(String color, char column, int row) {
+        super("Bishop", color, column, row);
     }
 
     @Override
-    public boolean verifyTarget(char targetCol, int targetRow) {
-        int colDiff = Math.abs(targetCol - column);
-        int rowDiff = Math.abs(targetRow - row);
-        return colDiff == rowDiff; // Bishops move diagonally
+    public boolean verifyMove(char newX, int newY) {
+        return Math.abs(this.column - newX) == Math.abs(this.row - newY);
     }
 }
