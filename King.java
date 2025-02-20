@@ -1,12 +1,12 @@
-class King extends ChessPiece {
-    public King(ColorType color, char column, int row) {
-        super(PieceType.KING, color, column, row);
+class King extends Queen {
+    // Empty constructor
+    public King(String color, char column, int row) {
+        super(color, column, row);
+        this.pieceName = "King"; // polymorphism
     }
 
     @Override
-    public boolean verifyTarget(char targetCol, int targetRow) {
-        int colDiff = Math.abs(targetCol - column);
-        int rowDiff = Math.abs(targetRow - row);
-        return colDiff <= 1 && rowDiff <= 1 && (colDiff + rowDiff > 0); // Ensures the king moves exactly one square
+    public boolean verifyMove(char newX, int newY) {
+        return Math.abs(this.column - newX) <= 1 && Math.abs(this.row - newY) <= 1;
     }
 }
